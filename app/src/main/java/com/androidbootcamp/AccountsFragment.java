@@ -1,8 +1,6 @@
 package com.androidbootcamp;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,7 +36,7 @@ public class AccountsFragment extends Fragment {
     }
 
     private String getWelcomeText() {
-        String userName = getActivity().getIntent().getStringExtra(AccountsActivity.UserName);
+        String userName = getActivity().getIntent().getStringExtra(HomeActivity.UserName);
         return getString(R.string.welcome) + " " + userName;
     }
 
