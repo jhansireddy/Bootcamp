@@ -10,4 +10,8 @@
     <dimen name="button_stroke_width">1dp</dimen>
     <dimen name="button_corner_radius_width">2dp</dimen>
     <dimen name="largeTextSize">30sp</dimen>
+    <dimen name="listPrefferedItemPaddingStart">10dp</dimen>
+    <dimen name="listPrefferedItemPaddingEnd">10dp</dimen>
+    <dimen name="tweetIconWidth">50dp</dimen>
+    <dimen name="tweetIconHeight">50dp</dimen>
 </resources>
