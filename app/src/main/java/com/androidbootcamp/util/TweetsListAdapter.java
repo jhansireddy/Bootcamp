@@ -9,30 +9,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidbootcamp.R;
-import com.androidbootcamp.model.Tweet;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TweetsListAdapter extends BaseAdapter{
-    private List<Tweet> tweets;
+import twitter4j.Status;
+
+public class TweetsListAdapter extends BaseAdapter {
+    private List<Status> statuses;
     private Context context;
     private LayoutInflater inflater;
 
-    public TweetsListAdapter(List<Tweet> tweets, Context context) {
-        this.tweets = tweets;
+    public TweetsListAdapter(List<Status> statuses, Context context) {
+        this.statuses = statuses;
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return tweets.size();
+        return statuses.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return tweets.get(position);
+        return statuses.get(position);
     }
 
     @Override
@@ -47,18 +48,18 @@ public class TweetsListAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Tweet tweet = (Tweet) getItem(position);
+        Status status = (Status) getItem(position);
         if (convertView == null) {
             convertView = createView();
         }
-        updateViewHolder(convertView, tweet);
+        updateViewHolder(convertView, status);
         return convertView;
     }
 
-    private void updateViewHolder(View convertView, Tweet tweet) {
+    private void updateViewHolder(View convertView, Status status) {
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(viewHolder.tweetIcon);
-        viewHolder.tweetMessage.setText(tweet.getMessage());
+        Picasso.with(context).load(DataProvider.getIconUrl()).into(viewHolder.tweetIcon);
+        viewHolder.tweetMessage.setText(status.getText());
     }
 
     private View createView() {

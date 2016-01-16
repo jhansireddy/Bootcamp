@@ -5,6 +5,8 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar"/>
+
     <fragment
         android:id="@+id/newsListFragment"
         class="com.androidbootcamp.NewsListFragment"

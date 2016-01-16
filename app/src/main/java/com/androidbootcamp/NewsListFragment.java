@@ -8,16 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.androidbootcamp.model.Tweet;
-import com.androidbootcamp.util.DataProvider;
+import com.androidbootcamp.task.TwitterAsynTask;
 import com.androidbootcamp.util.TweetsListAdapter;
 
 import java.util.List;
 
+import twitter4j.Status;
+
 /**
  * Created by jhansirk on 1/15/16.
  */
-public class NewsListFragment extends Fragment {
+public class NewsListFragment extends Fragment implements TweetsReceiver {
 
     private View view;
 
@@ -29,11 +30,21 @@ public class NewsListFragment extends Fragment {
         return view;
     }
 
-    private void init() {
+    private void renderData(List<twitter4j.Status> statuses) {
         ListView listView = (ListView) view.findViewById(R.id.listView);
-        List<Tweet> tweets = DataProvider.getTweets();
-        TweetsListAdapter adapter = new TweetsListAdapter(tweets, getActivity());
+        TweetsListAdapter adapter = new TweetsListAdapter(statuses, getActivity());
         listView.setAdapter(adapter);
     }
 
+    private void init() {
+        new TwitterAsynTask(this).execute();
+    }
+
+    @Override
+    public void onTweetsRecieved(List<Status> statuses) {
+        if (statuses != null) {
+            renderData(statuses);
+        }
+    }
 }
+

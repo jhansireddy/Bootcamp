@@ -43,4 +43,9 @@ public class DataProvider {
         return tweets;
     }
 
+    public static String getIconUrl()
+    {
+        return "https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697029-twitter-64.png";
+    }
+
 }
